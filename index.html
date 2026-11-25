@@ -10,98 +10,30 @@
 <body>
 <header class="topbar">
   <div class="brand"><span class="logo">𓂀</span><div><b>Luxor Connect</b><small>اكتشف الأقصر</small></div></div>
-  <button id="adminBtn" class="iconBtn" title="الإدارة">⚙️</button>
+  <button id="adminBtn" class="iconBtn" title="معلومات الاتصال">☁️</button>
 </header>
-
 <nav class="tabs">
   <button class="tab active" data-page="home">🏠 الرئيسية</button>
   <button class="tab" data-page="explore">🗺️ استكشف</button>
   <button class="tab" data-page="events">📅 الفعاليات</button>
   <button class="tab" data-page="profile">👤 حسابي</button>
 </nav>
-
 <main>
 <section id="home" class="page active">
-  <div class="hero">
-    <div><h1>خلّي العالم يشوف الأقصر ❤️</h1><p>شارك صورك، اسأل، ناقش، واكتشف أماكن وتجارب جديدة في الأقصر.</p></div>
-    <button id="newPostBtn" class="primary">＋ منشور جديد</button>
-  </div>
-  <div class="quickGrid">
-    <button data-page="explore">🏛️ الآثار</button>
-    <button data-page="events">🎉 الفعاليات</button>
-    <button id="guideBtn">🧭 دليل سياحي</button>
-    <button id="phraseBtn">🌍 لغات</button>
-  </div>
+  <div class="hero"><div><h1>خلّي العالم يشوف الأقصر ❤️</h1><p>شارك صورك، اسأل، ناقش، واكتشف أماكن وتجارب جديدة في الأقصر.</p></div><button id="newPostBtn" class="primary">＋ منشور جديد</button></div>
+  <div class="quickGrid"><button data-page="explore">🏛️ الآثار</button><button data-page="events">🎉 الفعاليات</button><button id="guideBtn">🧭 دليل سياحي</button><button id="phraseBtn">🌍 لغات</button></div>
   <div id="feed"></div>
 </section>
-
-<section id="explore" class="page">
-  <div class="sectionHead"><h2>استكشف الأقصر</h2><input id="search" placeholder="ابحث عن معبد، مكان، تجربة..."></div>
-  <div class="cards" id="placeCards"></div>
-</section>
-
-<section id="events" class="page">
-  <div class="sectionHead"><h2>فعاليات ورحلات</h2><button class="primary" id="addEventBtn">＋ إضافة</button></div>
-  <div id="eventsList"></div>
-</section>
-
-<section id="profile" class="page">
-  <div class="profileCard">
-    <div class="avatar">👤</div><h2 id="profileName">زائر الأقصر</h2>
-    <p>حسابك المحلي على الجهاز</p>
-    <button id="editProfile" class="secondary">تعديل الاسم</button>
-  </div>
-  <div class="stats"><div><b id="postCount">0</b><span>منشورات</span></div><div><b id="likeCount">0</b><span>إعجابات</span></div><div><b id="commentCount">0</b><span>تعليقات</span></div></div>
-</section>
-<section id="social" class="page">
- <div class="socialIntro"><h2>💬 مجتمع Mokaloke</h2><p>سجّل الدخول للاتصال بأصدقائك ومزامنة محادثاتك بين الأجهزة.</p></div>
- <div id="cloudSetup" class="socialPanel">
-  <h3>إعداد الاتصال الآمن</h3>
-  <p class="hint">أنشئ مشروع Supabase ثم أدخل Project URL وPublishable/anon key. لا تضع Service Role Key هنا أبداً.</p>
-  <input id="sbUrl" placeholder="https://xxxx.supabase.co" autocomplete="url">
-  <input id="sbKey" placeholder="Supabase publishable / anon key" autocomplete="off">
-  <button class="primary" id="connectCloud">اتصال</button><span id="connectionState" class="hint">غير متصل</span>
- </div>
- <div id="authPanel" class="socialPanel hidden">
-  <h3>الحساب</h3>
-  <input id="authName" placeholder="اسم العرض">\n  <input id="authUsername" placeholder="اسم مستخدم فريد بدون مسافات (مثال mohamed123)">
-  <input id="authEmail" type="email" placeholder="البريد الإلكتروني">
-  <input id="authPassword" type="password" placeholder="كلمة المرور (8 أحرف على الأقل)">
-  <div class="inlineBtns"><button class="primary" id="signUp">إنشاء حساب</button><button class="secondary" id="signIn">دخول</button></div>
-  <button class="secondary" id="signOut">تسجيل الخروج</button><p id="authState" class="hint">غير مسجل الدخول</p>
- </div>
- <div id="socialApp" class="hidden">
-  <div class="socialPanel">
-   <h3>👥 ابحث عن الأصدقاء</h3>
-   <p class="hint">ابحث باسم المستخدم. البحث برقم الهاتف يتطلب إعداد تحقق SMS وموافقة المستخدم.</p>
-   <input id="userSearch" placeholder="اسم المستخدم">
-   <button class="primary" id="findUsers">بحث</button><div id="userResults"></div>
-  </div>
-  <div class="socialPanel">
-   <div class="rowBetween"><h3>💬 محادثاتك</h3><button class="primary" id="makeGroup">＋ مجموعة</button></div>
-   <div id="cloudChats"></div>
-  </div>
-  <div id="cloudRoom" class="socialPanel hidden">
-   <div class="rowBetween"><h3 id="roomTitle">المحادثة</h3><button class="secondary" id="closeRoom">رجوع</button></div>
-   <div id="cloudMessages" class="cloudMessages"></div>
-   <div class="composer"><input id="cloudMessage" placeholder="اكتب رسالة"><button class="primary" id="sendCloudMessage">إرسال</button></div>
-  </div>
-  <div class="socialPanel">
-   <div class="rowBetween"><h3>🟢 الحالات</h3><button class="primary" id="addCloudStatus">＋ حالة</button></div>
-   <div id="cloudStatuses"></div>
-  </div>
- </div>
- <div class="socialPanel"><h3>🧩 المرحلة التالية</h3><p class="hint">بعد تشغيل الحسابات والمحادثات، نضيف رفع الصور والتسجيلات الصوتية، إيصالات القراءة، الإشعارات، المكالمات، ثم الخريطة التفاعلية للأقصر.</p></div>
-</section></main>
-
-<div id="modal" class="modal hidden">
- <div class="modalBox">
-  <button class="close" id="closeModal">×</button>
-  <div id="modalContent"></div>
- </div>
-</div>
-
+<section id="explore" class="page"><div class="sectionHead"><h2>استكشف الأقصر</h2><input id="search" placeholder="ابحث عن معبد، مكان، تجربة..."></div><div class="cards" id="placeCards"></div></section>
+<section id="events" class="page"><div class="sectionHead"><h2>فعاليات ورحلات</h2><button class="primary" id="addEventBtn">＋ إضافة</button></div><div id="eventsList"></div></section>
+<section id="profile" class="page"><div class="profileCard"><div class="avatar">👤</div><h2 id="profileName">زائر الأقصر</h2><p>اسمك على هذا الجهاز</p><button id="editProfile" class="secondary">تعديل الاسم</button></div><div class="stats"><div><b id="postCount">0</b><span>منشورات</span></div><div><b id="likeCount">0</b><span>إعجابات</span></div><div><b id="commentCount">0</b><span>تعليقات</span></div></div></section>
+</main>
+<div id="modal" class="modal hidden"><div class="modalBox"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
 <div id="toast"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>\n<script src="app.js"></script>\n<script src="social.js"></script>
-</body>
-</html>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body></html>
