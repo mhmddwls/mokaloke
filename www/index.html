@@ -10,59 +10,30 @@
 <body>
 <header class="topbar">
   <div class="brand"><span class="logo">𓂀</span><div><b>Luxor Connect</b><small>اكتشف الأقصر</small></div></div>
-  <button id="adminBtn" class="iconBtn" title="الإدارة">⚙️</button>
+  <button id="adminBtn" class="iconBtn" title="معلومات الاتصال">☁️</button>
 </header>
-
 <nav class="tabs">
   <button class="tab active" data-page="home">🏠 الرئيسية</button>
   <button class="tab" data-page="explore">🗺️ استكشف</button>
   <button class="tab" data-page="events">📅 الفعاليات</button>
   <button class="tab" data-page="profile">👤 حسابي</button>
 </nav>
-
 <main>
 <section id="home" class="page active">
-  <div class="hero">
-    <div><h1>خلّي العالم يشوف الأقصر ❤️</h1><p>شارك صورك، اسأل، ناقش، واكتشف أماكن وتجارب جديدة في الأقصر.</p></div>
-    <button id="newPostBtn" class="primary">＋ منشور جديد</button>
-  </div>
-  <div class="quickGrid">
-    <button data-page="explore">🏛️ الآثار</button>
-    <button data-page="events">🎉 الفعاليات</button>
-    <button id="guideBtn">🧭 دليل سياحي</button>
-    <button id="phraseBtn">🌍 لغات</button>
-  </div>
+  <div class="hero"><div><h1>خلّي العالم يشوف الأقصر ❤️</h1><p>شارك صورك، اسأل، ناقش، واكتشف أماكن وتجارب جديدة في الأقصر.</p></div><button id="newPostBtn" class="primary">＋ منشور جديد</button></div>
+  <div class="quickGrid"><button data-page="explore">🏛️ الآثار</button><button data-page="events">🎉 الفعاليات</button><button id="guideBtn">🧭 دليل سياحي</button><button id="phraseBtn">🌍 لغات</button></div>
   <div id="feed"></div>
 </section>
-
-<section id="explore" class="page">
-  <div class="sectionHead"><h2>استكشف الأقصر</h2><input id="search" placeholder="ابحث عن معبد، مكان، تجربة..."></div>
-  <div class="cards" id="placeCards"></div>
-</section>
-
-<section id="events" class="page">
-  <div class="sectionHead"><h2>فعاليات ورحلات</h2><button class="primary" id="addEventBtn">＋ إضافة</button></div>
-  <div id="eventsList"></div>
-</section>
-
-<section id="profile" class="page">
-  <div class="profileCard">
-    <div class="avatar">👤</div><h2 id="profileName">زائر الأقصر</h2>
-    <p>حسابك المحلي على الجهاز</p>
-    <button id="editProfile" class="secondary">تعديل الاسم</button>
-  </div>
-  <div class="stats"><div><b id="postCount">0</b><span>منشورات</span></div><div><b id="likeCount">0</b><span>إعجابات</span></div><div><b id="commentCount">0</b><span>تعليقات</span></div></div>
-</section>
+<section id="explore" class="page"><div class="sectionHead"><h2>استكشف الأقصر</h2><input id="search" placeholder="ابحث عن معبد، مكان، تجربة..."></div><div class="cards" id="placeCards"></div></section>
+<section id="events" class="page"><div class="sectionHead"><h2>فعاليات ورحلات</h2><button class="primary" id="addEventBtn">＋ إضافة</button></div><div id="eventsList"></div></section>
+<section id="profile" class="page"><div class="profileCard"><div class="avatar">👤</div><h2 id="profileName">زائر الأقصر</h2><p>اسمك على هذا الجهاز</p><button id="editProfile" class="secondary">تعديل الاسم</button></div><div class="stats"><div><b id="postCount">0</b><span>منشورات</span></div><div><b id="likeCount">0</b><span>إعجابات</span></div><div><b id="commentCount">0</b><span>تعليقات</span></div></div></section>
 </main>
-
-<div id="modal" class="modal hidden">
- <div class="modalBox">
-  <button class="close" id="closeModal">×</button>
-  <div id="modalContent"></div>
- </div>
-</div>
-
+<div id="modal" class="modal hidden"><div class="modalBox"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
 <div id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js"></script>
+<script src="firebase-config.js"></script>
 <script src="app.js"></script>
-</body>
-  </html>
+</body></html>
