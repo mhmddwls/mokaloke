@@ -18,9 +18,6 @@
   <button class="tab" data-page="explore">🗺️ استكشف</button>
   <button class="tab" data-page="events">📅 الفعاليات</button>
   <button class="tab" data-page="profile">👤 حسابي</button>
-  <button class="tab" data-page="friends">👥 الأصدقاء</button>
-  <button class="tab" data-page="chats">💬 الدردشة</button>
-  <button class="tab" data-page="statuses">🟢 الحالات</button>
 </nav>
 
 <main>
@@ -56,28 +53,46 @@
   </div>
   <div class="stats"><div><b id="postCount">0</b><span>منشورات</span></div><div><b id="likeCount">0</b><span>إعجابات</span></div><div><b id="commentCount">0</b><span>تعليقات</span></div></div>
 </section>
-
-<section id="friends" class="page">
-  <div class="sectionHead"><h2>👥 الأصدقاء</h2></div>
-  <div class="featurePanel"><p>ابحث عن صديق برقم هاتفه أو أضف بياناتك ليتمكن أصدقاؤك من العثور عليك.</p>
-  <input id="myPhone" type="tel" placeholder="رقم هاتفك مع مفتاح الدولة مثال +2010..." />
-  <button class="primary" id="savePhone">حفظ رقمي</button></div>
-  <div class="featurePanel"><input id="friendSearch" type="tel" placeholder="ابحث برقم الهاتف" />
-  <button class="primary" id="searchFriend">بحث</button><div id="friendResults"></div></div>
-  <h3>طلبات وصداقات</h3><div id="friendsList"></div>
-</section>
-<section id="chats" class="page">
-  <div class="sectionHead"><h2>💬 الرسائل</h2><button class="primary" id="newGroup">＋ مجموعة</button></div>
-  <div class="featurePanel"><input id="chatSearch" placeholder="ابحث في المحادثات" /><div id="chatList"></div></div>
-  <div id="chatRoom" class="featurePanel hidden"><div class="sectionHead"><h3 id="chatTitle">المحادثة</h3><button class="secondary" id="backChats">رجوع</button></div>
-  <div id="messages" class="messages"></div><div class="composer"><input id="messageText" placeholder="اكتب رسالة..." /><button class="secondary" id="stickerBtn">😊</button><button class="primary" id="sendMessage">إرسال</button></div><div id="stickerTray" class="stickerTray hidden"></div></div>
-  <p class="muted">تعمل المحادثات محلياً للتجربة. لتفعيل المزامنة الحقيقية اتبع ملف FIREBASE_SETUP.md.</p>
-</section>
-<section id="statuses" class="page">
-  <div class="sectionHead"><h2>🟢 الحالات</h2><button class="primary" id="addStatus">＋ حالة</button></div>
-  <div id="statusList"></div>
-</section>
-</main>
+<section id="social" class="page">
+ <div class="socialIntro"><h2>💬 مجتمع Mokaloke</h2><p>سجّل الدخول للاتصال بأصدقائك ومزامنة محادثاتك بين الأجهزة.</p></div>
+ <div id="cloudSetup" class="socialPanel">
+  <h3>إعداد الاتصال الآمن</h3>
+  <p class="hint">أنشئ مشروع Supabase ثم أدخل Project URL وPublishable/anon key. لا تضع Service Role Key هنا أبداً.</p>
+  <input id="sbUrl" placeholder="https://xxxx.supabase.co" autocomplete="url">
+  <input id="sbKey" placeholder="Supabase publishable / anon key" autocomplete="off">
+  <button class="primary" id="connectCloud">اتصال</button><span id="connectionState" class="hint">غير متصل</span>
+ </div>
+ <div id="authPanel" class="socialPanel hidden">
+  <h3>الحساب</h3>
+  <input id="authName" placeholder="اسم العرض">\n  <input id="authUsername" placeholder="اسم مستخدم فريد بدون مسافات (مثال mohamed123)">
+  <input id="authEmail" type="email" placeholder="البريد الإلكتروني">
+  <input id="authPassword" type="password" placeholder="كلمة المرور (8 أحرف على الأقل)">
+  <div class="inlineBtns"><button class="primary" id="signUp">إنشاء حساب</button><button class="secondary" id="signIn">دخول</button></div>
+  <button class="secondary" id="signOut">تسجيل الخروج</button><p id="authState" class="hint">غير مسجل الدخول</p>
+ </div>
+ <div id="socialApp" class="hidden">
+  <div class="socialPanel">
+   <h3>👥 ابحث عن الأصدقاء</h3>
+   <p class="hint">ابحث باسم المستخدم. البحث برقم الهاتف يتطلب إعداد تحقق SMS وموافقة المستخدم.</p>
+   <input id="userSearch" placeholder="اسم المستخدم">
+   <button class="primary" id="findUsers">بحث</button><div id="userResults"></div>
+  </div>
+  <div class="socialPanel">
+   <div class="rowBetween"><h3>💬 محادثاتك</h3><button class="primary" id="makeGroup">＋ مجموعة</button></div>
+   <div id="cloudChats"></div>
+  </div>
+  <div id="cloudRoom" class="socialPanel hidden">
+   <div class="rowBetween"><h3 id="roomTitle">المحادثة</h3><button class="secondary" id="closeRoom">رجوع</button></div>
+   <div id="cloudMessages" class="cloudMessages"></div>
+   <div class="composer"><input id="cloudMessage" placeholder="اكتب رسالة"><button class="primary" id="sendCloudMessage">إرسال</button></div>
+  </div>
+  <div class="socialPanel">
+   <div class="rowBetween"><h3>🟢 الحالات</h3><button class="primary" id="addCloudStatus">＋ حالة</button></div>
+   <div id="cloudStatuses"></div>
+  </div>
+ </div>
+ <div class="socialPanel"><h3>🧩 المرحلة التالية</h3><p class="hint">بعد تشغيل الحسابات والمحادثات، نضيف رفع الصور والتسجيلات الصوتية، إيصالات القراءة، الإشعارات، المكالمات، ثم الخريطة التفاعلية للأقصر.</p></div>
+</section></main>
 
 <div id="modal" class="modal hidden">
  <div class="modalBox">
@@ -87,10 +102,6 @@
 </div>
 
 <div id="toast"></div>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="app.js"></script>
-<script src="features.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>\n<script src="app.js"></script>\n<script src="social.js"></script>
 </body>
 </html>
