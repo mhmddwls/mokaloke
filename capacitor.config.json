@@ -1,0 +1,6 @@
+{
+  "appId": "com.luxorconnect.app",
+  "appName": "Luxor Connect",
+  "webDir": "www",
+  "server": { "androidScheme": "https" }
+}
