@@ -1,11 +1,25 @@
 const KEY="luxor_connect_v1";
 const places=[
-["معبد الكرنك","🏛️","تاريخ، تصوير، وجولة إرشادية"],
-["معبد الأقصر","🌅","زيارة صباحية أو مسائية وتجربة صوتية"],
-["وادي الملوك","⛰️","مقابر ملكية ومناظر جبلية"],
-["معبد حتشبسوت","👑","عمارة فريدة وقصة الملكة حتشبسوت"],
-["متحف الأقصر","🏺","قطع أثرية مختارة بعناية"],
-["البر الغربي","🚲","مسارات للرحلات والتصوير"]
+["معبد الكرنك","🏛️","مجمع معابد ضخم يضم صروحاً وبحيرة مقدسة"],
+["معبد الأقصر","🌅","معبد تاريخي على كورنيش النيل"],
+["وادي الملوك","⛰️","مقابر ملوك الدولة الحديثة"],
+["معبد حتشبسوت بالدير البحري","👑","معبد جنائزي مدرج في قلب الجبل"],
+["متحف الأقصر","🏺","مقتنيات أثرية من تاريخ طيبة"],
+["تمثالا ممنون","🗿","تمثالان ضخمان على مدخل معبد أمنحتب الثالث"],
+["وادي الملكات","👸","مقابر ملكات وأميرات مصر القديمة"],
+["مدينة هابو","🏛️","المعبد الجنائزي للملك رمسيس الثالث"],
+["الرامسيوم","⚱️","المعبد الجنائزي لرمسيس الثاني"],
+["دير المدينة","🏘️","قرية العمال والفنانين بناة المقابر الملكية"],
+["مقابر النبلاء","🎨","مقابر مزينة بمناظر الحياة اليومية"],
+["متحف التحنيط","🧪","شرح أدوات وطقوس التحنيط المصرية"],
+["طريق الكباش","🦁","طريق احتفالي يربط معبدي الكرنك والأقصر"],
+["متحف الكرنك المفتوح","🧱","آثار معمارية معروضة داخل مجمع الكرنك"],
+["معبد سيتي الأول بالقرنة","🏺","معبد جنائزي من عصر الأسرة التاسعة عشرة"],
+["بيت كارتر","🏠","منزل عالم الآثار هوارد كارتر"],
+["جزيرة الموز","🍌","رحلات نيلية وحدائق ومزارع"],
+["كورنيش النيل بالأقصر","🌊","ممشى وإطلالات على النيل"],
+["سوق الأقصر","🛍️","سوق شعبي للهدايا والتوابل والمشغولات"],
+["معبد إسنا","🛕","معبد خنوم في مدينة إسنا جنوب الأقصر"]
 ];
 let db=JSON.parse(localStorage.getItem(KEY)||'{"posts":[],"events":[],"profile":"زائر الأقصر"}');
 function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
@@ -24,7 +38,7 @@ function addPost(text,img){db.posts.unshift({id:Date.now(),name:db.profile,text,
 function render(){
  const feed=document.getElementById("feed");
  feed.innerHTML=db.posts.length?db.posts.map(p=>`<article class="post"><div class="postHead"><div class="avatar">👤</div><div><b>${esc(p.name)}</b><small> · الآن</small></div></div><p>${esc(p.text)}</p>${p.img?`<img src="${p.img}" alt="صورة المنشور">`:""}<div class="actions"><button onclick="like(${p.id})">👍 ${p.likes}</button><button onclick="comment(${p.id})">💬 ${p.comments.length}</button><button onclick="sharePost(${p.id})">↗️ مشاركة</button></div><div class="comments">${p.comments.map(c=>`<div class="comment"><b>${esc(c.name)}:</b> ${esc(c.text)}</div>`).join("")}</div></article>`).join(""):`<div class="notice">لا توجد منشورات بعد. كن أول من يشارك تجربة من الأقصر!</div>`;
- document.getElementById("placeCards").innerHTML=places.map(p=>`<div class="place"><span class="badge">مكان سياحي</span><h3>${p[1]} ${p[0]}</h3><p>${p[2]}</p><button class="secondary" onclick="toast('ميزة الحجز والموقع يمكن ربطها بخرائط Google في النسخة المتصلة')">فتح الدليل</button></div>`).join("");
+ document.getElementById("placeCards").innerHTML=places.map(p=>`<div class="place"><span class="badge">مكان سياحي</span><h3>${p[1]} ${p[0]}</h3><p>${p[2]}</p><a class="secondary mapLink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p[0]+' الأقصر مصر')}">📍 الموقع على الخريطة</a></div>`).join("");
  document.getElementById("eventsList").innerHTML=db.events.length?db.events.map((e,i)=>`<div class="event"><h3>📅 ${esc(e.title)}</h3><p>${esc(e.date)} — ${esc(e.place)}</p><button class="secondary" onclick="db.events.splice(${i},1);save()">حذف</button></div>`).join(""):`<div class="notice">لا توجد فعاليات مضافة.</div>`;
  document.getElementById("profileName").textContent=db.profile;
  document.getElementById("postCount").textContent=db.posts.length;

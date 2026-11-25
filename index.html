@@ -18,6 +18,9 @@
   <button class="tab" data-page="explore">🗺️ استكشف</button>
   <button class="tab" data-page="events">📅 الفعاليات</button>
   <button class="tab" data-page="profile">👤 حسابي</button>
+  <button class="tab" data-page="friends">👥 الأصدقاء</button>
+  <button class="tab" data-page="chats">💬 الدردشة</button>
+  <button class="tab" data-page="statuses">🟢 الحالات</button>
 </nav>
 
 <main>
@@ -53,6 +56,27 @@
   </div>
   <div class="stats"><div><b id="postCount">0</b><span>منشورات</span></div><div><b id="likeCount">0</b><span>إعجابات</span></div><div><b id="commentCount">0</b><span>تعليقات</span></div></div>
 </section>
+
+<section id="friends" class="page">
+  <div class="sectionHead"><h2>👥 الأصدقاء</h2></div>
+  <div class="featurePanel"><p>ابحث عن صديق برقم هاتفه أو أضف بياناتك ليتمكن أصدقاؤك من العثور عليك.</p>
+  <input id="myPhone" type="tel" placeholder="رقم هاتفك مع مفتاح الدولة مثال +2010..." />
+  <button class="primary" id="savePhone">حفظ رقمي</button></div>
+  <div class="featurePanel"><input id="friendSearch" type="tel" placeholder="ابحث برقم الهاتف" />
+  <button class="primary" id="searchFriend">بحث</button><div id="friendResults"></div></div>
+  <h3>طلبات وصداقات</h3><div id="friendsList"></div>
+</section>
+<section id="chats" class="page">
+  <div class="sectionHead"><h2>💬 الرسائل</h2><button class="primary" id="newGroup">＋ مجموعة</button></div>
+  <div class="featurePanel"><input id="chatSearch" placeholder="ابحث في المحادثات" /><div id="chatList"></div></div>
+  <div id="chatRoom" class="featurePanel hidden"><div class="sectionHead"><h3 id="chatTitle">المحادثة</h3><button class="secondary" id="backChats">رجوع</button></div>
+  <div id="messages" class="messages"></div><div class="composer"><input id="messageText" placeholder="اكتب رسالة..." /><button class="secondary" id="stickerBtn">😊</button><button class="primary" id="sendMessage">إرسال</button></div><div id="stickerTray" class="stickerTray hidden"></div></div>
+  <p class="muted">تعمل المحادثات محلياً للتجربة. لتفعيل المزامنة الحقيقية اتبع ملف FIREBASE_SETUP.md.</p>
+</section>
+<section id="statuses" class="page">
+  <div class="sectionHead"><h2>🟢 الحالات</h2><button class="primary" id="addStatus">＋ حالة</button></div>
+  <div id="statusList"></div>
+</section>
 </main>
 
 <div id="modal" class="modal hidden">
@@ -63,6 +87,10 @@
 </div>
 
 <div id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="app.js"></script>
+<script src="features.js"></script>
 </body>
 </html>
